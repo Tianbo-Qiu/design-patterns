@@ -1,0 +1,11 @@
+  Editor   - - - - - - - - - - - ->  EditorState
+(originator)                         (memento)
+                                         ^
+                                         |
+                                         @
+                                      History
+                                    (caretaker)
+
+Editor depends on EditorState instead of having the composition relationship.
+History consists of EditorState (composition).
+
