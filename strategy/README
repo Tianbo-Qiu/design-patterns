@@ -1,0 +1,24 @@
+ImageStorage
+------------
+compressor
+filter
+------------
+store()
+==============================================
+The compressor and filter can be abstracted out as a concept of strategy.
+
+=============================================
+ImageStorage
+------------
+compressor    ------------------> Compressor
+                                  ----------
+                                  compress()
+                                  ==========
+
+filter        ------------------> Filter
+                                  ---------
+                                  filter()
+-------------
+store()
+
+The Compressor and Filter can have multiple concrete classes.
