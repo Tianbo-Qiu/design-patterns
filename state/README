@@ -1,0 +1,35 @@
+Context                      State
+----------   --------->    ---------
+request()                  handle()
+                            |     |
+               ConcreteStateA     ConcreteStateB
+               --------------     --------------
+               handle()           handle()
+
+=================================================
+Main         --------->    UIControl
+                           ---------
+                           draw()
+                           |    |
+                        Text    CheckBox
+                        ----    --------
+                        draw()  draw()
+=================================================
+Main ------> Canvas ------> Tool
+                            ----------
+                            mouseDown()
+                            mouseUp()
+                            |       |
+                SelectionTool      BrushTool
+                -------------      ---------
+                mouseDown()        mouseDown()
+                mouseUp()          mouseUp()
+
+
+
+We can avoid repeating the if/switch (the selection) logic
+by abtracting concrete classes with an interface.
+
+It's also easier to extend by adding new concrete classes.
+-- Open Closed Principle
+The class should be open for extension but closed for modification.
