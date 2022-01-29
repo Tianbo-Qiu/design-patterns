@@ -1,0 +1,13 @@
+Abstract the interation logic into another class or an interface with concrete classes.
+
+BrowseHistory    --------->   Iterator
+-------------                 -------------
+push(url)                     next()
+pop()                         current()
+createIterator()              hasNext()
+================              =============
+                                |      |
+                      ListIterator   ArrayIterator
+                      (concrete classes with different capabilities)
+
+And also we don't need to expose the data only for iteration.
