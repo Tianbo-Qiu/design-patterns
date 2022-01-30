@@ -1,0 +1,27 @@
+Use inheritance for common actions to avoid duplication.
+========================================================
+AbstractClass
+-----------------
+method() {
+  operation1();
+  // ... do something
+  operation2();
+}
+
+operation1() |-Hooks, don't have to be abtract
+operation2() |/
+=================
+     |
+ConcreteClass
+-------------
+operation1() |-Override or implement
+operation2() |/
+=================
+
+Hooks will be hook up to the concrete classes and the abstract class
+contains the logic of using them.
+
+When subclassing, we probably should check if we should utilize the
+parent class with hooks or override methods by calling super.method
+and then extending it. If the parent class provides implementation
+utilizing its abstract methods then it probably the hooks way.
