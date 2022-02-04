@@ -1,0 +1,32 @@
+                             [interface]
+Invoker                      Command
+-------     --------->       -----------
+                             execute()
+=======                      ===========
+                             |
+Receiver                     ConcreteCommand
+--------    <---------       ---------------
+========                     ===============
+
+============================================
+           Command Pattern
+============================================
+
+The invoker class talks to the command
+interface, and we have concrete
+implementation of this interface. And the
+concrete implementation delegates the work
+to the receiver.
+
+The invoker (sender) is decoupled with the
+receiver this way , so the invoker talks to
+the receiver without being aware of it.
+
+Also, we are representing each request using
+a command object. We can pass them around in
+our code, we can pass them as arguments or
+add them to a list. We can keep track of the
+commands that have been executed, and replay
+them or undo them. We can also store tracked
+commands in a database and execute them in
+the future.
