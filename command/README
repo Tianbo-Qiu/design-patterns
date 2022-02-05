@@ -30,3 +30,17 @@ commands that have been executed, and replay
 them or undo them. We can also store tracked
 commands in a database and execute them in
 the future.
+
+I'll usually just pass functions as
+callbacks when they are needed but maybe we
+can consider passing objects that
+encapulate those functions and probably with
+other properties sometimes.
+
+And also, since we don't call the Receiver
+directly and use a concrete class of an
+interface instead, it can make some of the
+public methods of Receiver invisible to a
+command. A command just provides a view of
+the Receiver and the Receiver can have more
+methods for other interfaces.
