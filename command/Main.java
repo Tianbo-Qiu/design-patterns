@@ -8,5 +8,12 @@ public class Main {
     var command = new AddCustomerCommand(service);
     var button = new Button(command);
     button.click();
+    // hold commands and support replays
+    var composite = new CompositeCommand();
+    composite.add(new ResizeCommand());
+    composite.add(new CropCommand());
+    composite.execute();
+    // replay
+    composite.execute();
   }
 }

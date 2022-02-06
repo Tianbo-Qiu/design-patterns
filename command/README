@@ -44,3 +44,42 @@ public methods of Receiver invisible to a
 command. A command just provides a view of
 the Receiver and the Receiver can have more
 methods for other interfaces.
+
+A command can contain a list of other
+commands and we can replay the list of
+actions.
+
+===========================================
+              Undo
+===========================================
+
+Unlike the momento pattern that stores
+snapshots of states, we can implement undo
+by adding an unexecute method to the
+command interface.
+
+The Command acts as a link between Business
+objects and the user interface objects.
+
+--------------------------------------------
+Business layer (e.g. HtmlDocument class)
+--------------------------------------------
+Command              ^              History
+--------             |              -------           
+execute()            |              commands
+========             | 
+                     |         
+UndoableCommand      | 
+---------------      | 
+execute()            |       
+unexecute()          |
+===============      v 
+--------------------------------------------
+BoldCommand                      UndoCommand
+(concrete class              (concrete class
+of UndoableCommand)     of Command that undo
+                         the last command in
+                                the history)
+
+User interface objects
+============================================
