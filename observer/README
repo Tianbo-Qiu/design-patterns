@@ -1,0 +1,67 @@
+===========================================
+              Observer pattern
+===========================================
+We use this pattern in situations where the
+state of an object changes and we need to
+notify other objects about these changes.
+
+-------------------------------------------
+(Observerable/Subject)            Interface
+DataSource                        Observer
+----------                        ---------
+value                             update()
+----------                        =========
+getValue()                          |    |
+setValue(value)                     |    |
+addObserver(observer)     SpreadSheet Chart      
+removeObserver(observer)               
+notifyObservers()
+============================================
+
+NOTE: The term Observerable and Subject are
+interchangeable in this context. It's also
+known as PubSub pattern (publisher and
+subscribers).
+
+===========================================
+                Passing data
+===========================================
+- the push style
+The Observeral or Subject notifies observers
+with the data (changes). This will pass the
+same data to all observers.
+-------------------------------------------
+(Abstract class)                (Interface)
+Subject                            Observer
+----------------             --------------
+attach(observer)              update(value)
+detach(observer)
+notify(value)
+================             ==============
+      ^                             ^
+      |                             |
+ConcreteSubject         ConcreteObserver(s)
+
+--------------------------------------------
+
+- the pull style
+The concrete classes of Observer will need
+to have a reference to the Observerable or
+Subject. The observers pulls the data they
+need when get notified.
+
+
+-------------------------------------------
+(Abstract class)                (Interface)
+Subject                            Observer
+----------------             --------------
+attach(observer)                   update()
+detach(observer)
+notify()
+================             ==============
+      ^                             ^
+      |                             |
+ConcreteSubject <--ref-- ConcreteObserver(s)
+                    &
+                pull data
+-------------------------------------------
