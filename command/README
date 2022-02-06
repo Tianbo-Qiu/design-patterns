@@ -1,0 +1,85 @@
+                             [interface]
+Invoker                      Command
+-------     --------->       -----------
+                             execute()
+=======                      ===========
+                             |
+Receiver                     ConcreteCommand
+--------    <---------       ---------------
+========                     ===============
+
+============================================
+           Command Pattern
+============================================
+
+The invoker class talks to the command
+interface, and we have concrete
+implementation of this interface. And the
+concrete implementation delegates the work
+to the receiver.
+
+The invoker (sender) is decoupled with the
+receiver this way , so the invoker talks to
+the receiver without being aware of it.
+
+Also, we are representing each request using
+a command object. We can pass them around in
+our code, we can pass them as arguments or
+add them to a list. We can keep track of the
+commands that have been executed, and replay
+them or undo them. We can also store tracked
+commands in a database and execute them in
+the future.
+
+I'll usually just pass functions as
+callbacks when they are needed but maybe we
+can consider passing objects that
+encapulate those functions and probably with
+other properties sometimes.
+
+And also, since we don't call the Receiver
+directly and use a concrete class of an
+interface instead, it can make some of the
+public methods of Receiver invisible to a
+command. A command just provides a view of
+the Receiver and the Receiver can have more
+methods for other interfaces.
+
+A command can contain a list of other
+commands and we can replay the list of
+actions.
+
+===========================================
+              Undo
+===========================================
+
+Unlike the momento pattern that stores
+snapshots of states, we can implement undo
+by adding an unexecute method to the
+command interface.
+
+The Command acts as a link between Business
+objects and the user interface objects.
+
+--------------------------------------------
+Business layer (e.g. HtmlDocument class)
+--------------------------------------------
+Command              ^              History
+--------             |              -------           
+execute()            |              commands
+========             | 
+                     |         
+UndoableCommand      | 
+---------------      | 
+execute()            |       
+unexecute()          |
+===============      v 
+--------------------------------------------
+BoldCommand                      UndoCommand
+(concrete class              (concrete class
+of UndoableCommand)     of Command that undo
+                         the last command in
+                                the history)
+
+User interface objects
+============================================
