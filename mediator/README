@@ -87,3 +87,19 @@ ConcreteMediator -------> ConcreteColleague
 -------------------------------------------
 fig 2-2
 -------------------------------------------
+
+============================================
+       Refactor with Observer pattern
+============================================
+We can refactor the UIControl to make it talk to
+DialogBox inindrectly with the
+observer pattern.
+
+Each concrete class of UIControl works as
+Observable and we won't have the long if
+else block. The package mediator.observer
+and mediator.events are implemented with
+this pattern and the mediator.events is
+almost the same as mediator.observer with
+refactoring regarding naming and functional
+interface.
