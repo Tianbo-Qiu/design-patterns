@@ -1,0 +1,89 @@
+===========================================
+              Mediator pattern
+===========================================
+Use a mediator for communication between
+classes. For example, the ListBox needs to
+talk to a Button and a TextBox when its
+state changes. And a Button needs to talk
+to ListBox and TextBox when its state
+changes.
+
+We have a bunch of objects that need to talk
+to each other.
+
+============================================
+       Inheritance without a mediator
+============================================
+ArticlesListBox --------> TitleTextBox
+---------------           ------------------
+changed() {               changed() {
+ textBox.setContent()     button.disable();
+ button.enable();         }
+}
+===============           ==================
+          |                |   ^
+          v                v   |
+          =======================
+          SaveButton
+          -----------------------
+          clicked() {
+            textBox.getContent();
+            // update db
+          }
+          =======================
+--------------------------------------------
+fig 1-1
+--------------------------------------------
+We will have a lot of connections or
+dependencies between classes and the logic
+behind the communication is spread all over
+the place.
+
+============================================
+       Inheritance with a mediator
+============================================
+We use another class DialogBox as the
+mediator.
+
+--------------------------------------------
+ListBox:UIControl          TextBox:UIControl
+=================          =================
+              |             |
+              v             v
+              ==========================
+              DialogBox
+              --------------------------
+              changed(UIControl control)
+              ==========================
+                    ^
+                    |
+              ================
+              Button:UIControl
+              ================
+-------------------------------------------
+fig 2-1
+-------------------------------------------
+We have a single place for the interaction
+logic so it's not spread all over the place.
+
+The DialogBox is mediating the interaction
+of these objects, so they don't know about
+each other and they only know their
+mediator. Everytime there is a change in the
+UControl class, it notifies the DialogBox
+and the DialogBox will figure out what to do
+next.
+
+-------------------------------------------
+(Abstract class)          (Interface)
+================          =================
+Mediator         <------- Colleague
+================          =================
+      ^                          ^
+      |                          |
+================          =================
+ConcreteMediator -------> ConcreteColleague
+================          =================
+-------------------------------------------
+fig 2-2
+-------------------------------------------
