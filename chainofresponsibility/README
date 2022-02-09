@@ -1,0 +1,41 @@
+===========================================
+          Chain of Responsibility
+===========================================
+With this pattern we can build a pipeline or
+a chain of objects for processing a request,
+and that request doesn't have to be an HTTP
+request. It can be any type of request.
+
+--------------------------------------------
+                    Authenticator  INTERFACE
+               ---> =============
+               |
+WebServer      |
+============ --+--> Compressor     INTERFACE
+handle(req){   |    =============
+ auth();       |
+ log();        ---> Logger         INTERFACE
+ compress();        =============
+}
+--------------------------------------------
+arch 1
+--------------------------------------------
+We will need to change the implementation of
+the handle(req) method when we want to
+change the logic such as the order or add a
+new step in between.
+
+-------------------------------------------
+                         ABSTRACT CLASS
+WebServer                Handler  ---
+============= ---------> ========== | next  
+handle(req) {            handle() <--
+ handler.handle(req)     ==========
+}                        |        |
+                  Authenticator   Logger
+                  =============   ======
+--------------------------------------------
+arch 2 with Chain of Responsibility pattern
+--------------------------------------------
+Open for extensions and close for
+modifications.
