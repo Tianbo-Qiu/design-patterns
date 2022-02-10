@@ -39,3 +39,7 @@ arch 2 with Chain of Responsibility pattern
 --------------------------------------------
 Open for extensions and close for
 modifications.
+
+With this pattern, we can build processing
+pipelines that follow the open closed
+principle.
