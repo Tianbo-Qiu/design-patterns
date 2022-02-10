@@ -1,0 +1,29 @@
+-----------------------------------------------
+                Visitor pattern
+-----------------------------------------------
+
+   INTERFACE                INTERFACE
+   Element                  Visitor
+   --------------- -------> -------------------
+   accept(Visitor)          visit(ElementA)
+   ===============          visit(ElementB)
+               ^
+   ____________|____________
+   |                       |
+CONCRETE CLASS             CONCRETE CLASS
+ElementA                   ElementB
+----------------------     ---------------------
+accept(visitor) {          accept(visitor) {
+  visitor.visit(this);       visitor.visit(this);
+}                          }
+================================================
+
+The visitor pattern allows us to add new
+operations to an object structure without
+modifying it. And all the logic is in one place.
+
+This pattern is good for the case when the object
+structure is stable and we need to add new
+operations often.
+
+
